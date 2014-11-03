@@ -1,0 +1,14 @@
+Package: ViralHaplotyper
+Title: Viral Haplotyper
+Description: Investigates haplotypes present in aplicon sequencing of viral
+    genetic material.
+Version: 0.1
+Author: Phillip Labuschagne <philliplab@gmail.com>
+Maintainer: Phillip Labuschagne <philliplab@gmail.com>
+Depends:
+    testthat,
+    Biostrings
+Imports:
+    shiny
+License: GPL-3
+URL: https://github.com/philliplab/ViralHaplotyper
