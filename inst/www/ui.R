@@ -8,13 +8,14 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     sidebarPanel(
+      fileInput("seq_data", label = h3("Sequence Data")),
       textInput('msg', 'Message', value = "Hello Word")
     ),
 
     mainPanel(
       tabsetPanel(
         tabPanel("File Details",
-                 textOutput("test_out")
+                 verbatimTextOutput("test_out")
                  )
         )
     )
