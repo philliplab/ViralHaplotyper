@@ -31,6 +31,20 @@ shinyServer(function(input, output, session) {
 
   output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
 
+  output$cc_plot <- renderPlot({
+    seq_data <- read_data()$seq_data$data_set
+    seq_data <- get_data_of('timepoint', seq_data, input$timepoint)
+    table_table <- table(table(seq_data))
+    table_table <- data.frame(number_of_copies = as.numeric(attr(table_table,                 
+                                                      'dimnames')[[1]]),                  
+                              number_of_sequences = as.numeric(table_table))
+    print(plot_the_counts_of_the_counts(table_table))
+  })
+
+  output$debug <- renderPrint({
+    print(count_the_counts_of_the_sequences)
+  })
+
   output$big_phylo <- renderPlot({
     big_plot <- bionj(seq_dists())
     plot(big_plot, show.tip.label = FALSE)

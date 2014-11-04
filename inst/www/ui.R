@@ -18,11 +18,17 @@ shinyUI(fluidPage(
         tabPanel("Input File",
                  verbatimTextOutput("data_set")
                  ),
+        tabPanel("Unique Sequences Counts",
+                 plotOutput('cc_plot')
+                 ),
         tabPanel("Big Phylog. Plot",
                  plotOutput("big_phylo", height = 2000)
                  ),
         tabPanel("Time Points",
                  verbatimTextOutput('all_timepoints')
+                 ),
+        tabPanel("Debug",
+                 verbatimTextOutput('debug')
                  )
         )
     )
