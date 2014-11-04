@@ -8,7 +8,7 @@ Maintainer: Phillip Labuschagne <philliplab@gmail.com>
 Depends:
     testthat,
     toolmania.
-    Biostrings
+Biostrings
 Imports:
     shiny
 License: GPL-3

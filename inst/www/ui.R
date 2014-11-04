@@ -19,7 +19,8 @@ shinyUI(fluidPage(
                  verbatimTextOutput("data_set")
                  ),
         tabPanel("Unique Sequences Counts",
-                 plotOutput('cc_plot')
+                 plotOutput('cc_plot'),
+                 plotOutput('ecdf_plot_of_cc')
                  ),
         tabPanel("Big Phylog. Plot",
                  plotOutput("big_phylo", height = 2000)

@@ -41,6 +41,21 @@ shinyServer(function(input, output, session) {
     print(plot_the_counts_of_the_counts(table_table))
   })
 
+  output$ecdf_plot_of_cc <- renderPlot({
+    seq_data <- read_data()$seq_data$data_set
+    seq_data <- get_data_of('timepoint', seq_data, input$timepoint)
+    table_table <- table(table(seq_data))
+    table_table <- data.frame(number_of_copies = as.numeric(attr(table_table,                 
+                                                      'dimnames')[[1]]),                  
+                              number_of_sequences = as.numeric(table_table))
+    tt <- table_table
+    x <- tt[,1]*tt[,2]                                  
+    ecdf_of_cc <- data.frame(y = cumsum(rev(x)),
+                            x = rev(tt$number_of_copies))                                 
+    p <- plot_ecdf_of_counts_of_the_counts(ecdf_of_cc)
+    print(p)                      
+  })
+
   output$debug <- renderPrint({
     print(count_the_counts_of_the_sequences)
   })
