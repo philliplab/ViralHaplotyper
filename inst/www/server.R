@@ -53,6 +53,21 @@ shinyServer(function(input, output, session) {
   output$all_timepoints <- renderPrint({print(get_unique_points_of('time', 
     read_data()$seq_data$data_set, sep = '_', indx = 2))})
 
-  output$session_info <- renderPrint(print(as.list(session)))
+  output$timepoint <- renderUI({
+    if (!read_data()$success){
+      return()
+    } else {
+      all_time_points <- get_unique_points_of('time', 
+                                              read_data()$seq_data$data_set, 
+                                              sep = '_', 
+                                              indx = 2)
+      all_time_points <- sort(all_time_points)
+      return(selectInput('timepoint', 
+                         label = h3("Time Point"), 
+                         choices = all_time_points,
+                         selected = all_time_points[1]))
+    }
+  })
 
+  output$session_info <- renderPrint(print(as.list(session)))
 })

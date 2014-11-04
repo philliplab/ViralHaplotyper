@@ -9,7 +9,7 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       fileInput("seq_data", label = h3("Sequence Data")),
-      textInput('timepoint', label = h3("Time Point"), value = "2000V3"),
+      uiOutput('timepoint'),
       downloadButton('download_big_phylo', 'Download Big Phylog. Plot')
     ),
 
