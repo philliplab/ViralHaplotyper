@@ -1,5 +1,6 @@
 library(shiny)
 library(ViralHaplotyper)
+options(shiny.maxRequestSize=100*1024^2)
 
 shinyServer(function(input, output, session) {
 
@@ -19,5 +20,6 @@ shinyServer(function(input, output, session) {
     return(data_sets)
   })
 
-  output$test_out <- renderPrint(print(read_data()$seq_data$data_set))
+  output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
+
 })
