@@ -50,6 +50,9 @@ shinyServer(function(input, output, session) {
     contentType = 'application/pdf'
   )
 
+  output$all_timepoints <- renderPrint({print(get_unique_points_of('time', 
+    read_data()$seq_data$data_set, sep = '_', indx = 2))})
+
   output$session_info <- renderPrint(print(as.list(session)))
 
 })
