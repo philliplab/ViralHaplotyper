@@ -21,14 +21,18 @@ shinyServer(function(input, output, session) {
     return(data_sets)
   })
 
-  output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
-
-  output$big_phylo <- renderPlot({
+  seq_dists <- reactive({
     seq_data <- read_data()$seq_data$data_set
     seq_data <- get_data_of('timepoint', seq_data, "_4250V3_")
     seq_data <- unique(seq_data)
     seq_dists <- stringDist(seq_data)
-    big_plot <- bionj(seq_dists)
+    return(seq_dists)
+  })
+
+  output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
+
+  output$big_phylo <- renderPlot({
+    big_plot <- bionj(seq_dists())
     plot(big_plot, show.tip.label = FALSE)
   })
 
