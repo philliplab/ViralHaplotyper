@@ -1,5 +1,6 @@
 library(shiny)
 library(ViralHaplotyper)
+library(toolmania)
 options(shiny.maxRequestSize=100*1024^2)
 
 shinyServer(function(input, output, session) {
@@ -21,5 +22,14 @@ shinyServer(function(input, output, session) {
   })
 
   output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
+
+  output$big_phylo <- renderPlot({
+    seq_data <- read_data()$seq_data$data_set
+    seq_data <- get_data_of('timepoint', seq_data, "_4250V3_")
+    seq_data <- unique(seq_data)
+    seq_dists <- stringDist(seq_data)
+    big_plot <- bionj(seq_dists)
+    plot(big_plot)
+  })
 
 })

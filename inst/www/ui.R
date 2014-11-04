@@ -15,6 +15,9 @@ shinyUI(fluidPage(
       tabsetPanel(
         tabPanel("Input File",
                  verbatimTextOutput("data_set")
+                 ),
+        tabPanel("Big Plot",
+                 plotOutput("big_phylo")
                  )
         )
     )
