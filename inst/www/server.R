@@ -23,7 +23,7 @@ shinyServer(function(input, output, session) {
 
   seq_dists <- reactive({
     seq_data <- read_data()$seq_data$data_set
-    seq_data <- get_data_of('timepoint', seq_data, "_4250V3_")
+    seq_data <- get_data_of('timepoint', seq_data, input$timepoint)
     seq_data <- unique(seq_data)
     seq_dists <- stringDist(seq_data)
     return(seq_dists)
