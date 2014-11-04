@@ -25,6 +25,13 @@ shinyUI(fluidPage(
         tabPanel("Big Phylog. Plot",
                  plotOutput("big_phylo", height = 2000)
                  ),
+        tabPanel("Small Phylog. Plot",
+                 plotOutput("small_phylo")
+                 #verbatimTextOutput("small_phylo")
+                 ),
+        tabPanel("Cluster Output",
+                 verbatimTextOutput('cluster_output')
+                 ),
         tabPanel("Time Points",
                  verbatimTextOutput('all_timepoints')
                  ),

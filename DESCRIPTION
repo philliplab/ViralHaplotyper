@@ -7,8 +7,10 @@ Author: Phillip Labuschagne <philliplab@gmail.com>
 Maintainer: Phillip Labuschagne <philliplab@gmail.com>
 Depends:
     testthat,
-    toolmania.
-Biostrings
+    toolmania,
+    Biostrings,
+    cluster,
+    ape
 Imports:
     shiny
 License: GPL-3

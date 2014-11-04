@@ -29,6 +29,11 @@ shinyServer(function(input, output, session) {
     return(seq_dists)
   })
 
+  clustered <- reactive({
+    clustered_seqs <- pam(seq_dists(), 20)
+    return(clustered_seqs)
+  })
+
   output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
 
   output$cc_plot <- renderPlot({
@@ -78,6 +83,21 @@ shinyServer(function(input, output, session) {
     },
     contentType = 'application/pdf'
   )
+
+  output$cluster_output <- renderPrint({
+    print(clustered())
+  })
+
+  output$small_phylo <- renderPlot({
+    seq_data <- read_data()$seq_data$data_set
+    seq_data <- get_data_of('timepoint', seq_data, input$timepoint)
+    seq_data <- unique(seq_data)
+    medoid_names <- clustered()$medoids
+    medoids <- seq_data[names(seq_data) %in% medoid_names]                            
+    seq_dists <- stringDist(medoids)                                                            
+    big_plot <- bionj(seq_dists)                                                                
+    plot(big_plot, show.tip.label = FALSE)                                    
+  })
 
   output$all_timepoints <- renderPrint({print(get_unique_points_of('time', 
     read_data()$seq_data$data_set, sep = '_', indx = 2))})
