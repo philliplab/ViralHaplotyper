@@ -8,7 +8,8 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     sidebarPanel(
-      fileInput("seq_data", label = h3("Sequence Data"))
+      fileInput("seq_data", label = h3("Sequence Data")),
+      downloadButton('download_big_phylo', 'Download Big Phylog. Plot')
     ),
 
     mainPanel(
@@ -16,7 +17,7 @@ shinyUI(fluidPage(
         tabPanel("Input File",
                  verbatimTextOutput("data_set")
                  ),
-        tabPanel("Big Plot",
+        tabPanel("Big Phylog. Plot",
                  plotOutput("big_phylo", height = 2000)
                  ),
         tabPanel("Session Info",

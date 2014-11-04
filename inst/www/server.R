@@ -36,6 +36,20 @@ shinyServer(function(input, output, session) {
     plot(big_plot, show.tip.label = FALSE)
   })
 
+  output$download_big_phylo <- downloadHandler(
+    filename = function() {paste0('big_phylog_', floor(runif(1)*(10^16)), 'pdf')},
+    content = function(file){
+      temp_name <- paste0(floor(runif(1)*(10^16)), '.pdf')
+      pdf(temp_name, width = 10, height = 25)
+      big_plot <- bionj(seq_dists())
+      plot(big_plot, show.tip.label = FALSE)
+      dev.off()
+      file.copy(temp_name, file)
+      file.remove(temp_name)
+    },
+    contentType = 'application/pdf'
+  )
+
   output$session_info <- renderPrint(print(as.list(session)))
 
 })
