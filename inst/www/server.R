@@ -29,7 +29,9 @@ shinyServer(function(input, output, session) {
     seq_data <- unique(seq_data)
     seq_dists <- stringDist(seq_data)
     big_plot <- bionj(seq_dists)
-    plot(big_plot)
+    plot(big_plot, show.tip.label = FALSE)
   })
+
+  output$session_info <- renderPrint(print(as.list(session)))
 
 })

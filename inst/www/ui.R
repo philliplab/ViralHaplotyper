@@ -17,7 +17,10 @@ shinyUI(fluidPage(
                  verbatimTextOutput("data_set")
                  ),
         tabPanel("Big Plot",
-                 plotOutput("big_phylo")
+                 plotOutput("big_phylo", height = 2000)
+                 ),
+        tabPanel("Session Info",
+                 verbatimTextOutput('session_info')
                  )
         )
     )
