@@ -72,6 +72,9 @@
     threshold = 'numeric',
     copies = 'list'),
   validity = function(object){
-    return(TRUE)
+    for (seq_name in names(object@copies)){
+      stopifnot(seq_name %in% names(object@sequences))
+      stopifnot(!(seq_name %in% object@copies[[seq_name]]$other_sequences))
+    }
   }
 )
