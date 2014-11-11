@@ -19,3 +19,17 @@
 #' By specifying only a single input sequence and a distance of zero, it will
 #' be possible to construct haplotypes that consist of only identical
 #' sequences.
+#'
+#' The distance concept is extremely complex. There are currently two
+#' different distance approaches under consideration:
+#' \itemize{
+#'   \item biostrings::stringDist - can use either alignment or edit based
+#'   distances
+#'   \item ape::dist.dna - uses phylogenetic distances based on things like the
+#'   Jukes-Cantor model (and more complex variants)
+#' }
+#' 
+#' To ensure a flexible approach to distances, write a wrapper which allows the
+#' users to select which distance needs to be used. The wrapper can be extended
+#' over time to include both distance functions as well as others. Start by
+#' using stringDist and allowing the use of a custom substitution matrix.
