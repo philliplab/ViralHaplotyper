@@ -1,18 +1,38 @@
-#' The data structure that holds a haplotype
+#' @title The data structure that holds a haplotype
 #' 
-#' These are the first thoughts on the design of the data structure:
-#'
-#' A haplotype will be defined by specifying a number of input sequences
-#' (possibly only one), a distance measure (can be complex and based on a
-#' 'custom' substitution matrix), and a threshold. The threshold will the the
+#' @details A haplotype will be defined by specifying:
+#' \itemize{
+#'   \item a number of input sequences (possibly only one)
+#'   \item a distance measure (can be complex and based on a 'custom' substitution matrix), 
+#'   \item a threshold
+#'   \item the copies list (see note about non-uniqueness)
+#' }
+#' The threshold will the the
 #' maximum average distance that a sequence can be from all the sequences
 #' initally specified and still be consired part of the haplotype.
+#'
+#' A further complication is introduced by the fact that the sequences are not
+#' necessarily unique. If the
+#' number of repeated sequences is large, then very substantial performance
+#' increases can be achieved by working on only the unique sequences. This
+#' performance increase is so large that it is absolutely worthwhile to
+#' implement special features to take advantage of it. (19.5 sec on unqiue
+#' sequences vs xxx sec on non-unique sequences on sample data from CAPRISA)
+#'
+#' To handle the non-uniquess of the sequences, the input sequences specified
+#' will only include unique sequences. The names associated with those
+#' sequences must the the first (when sorted with sort()) sequence name of all
+#' the sequences that are identical. A further list will be included in the
+#' haplotype data structure that contains for each input name, the number of
+#' sequences that are identical to it and a character vector of their names.
 #'
 #' For this data structure the following methods will be implemented:
 #' \itemize{
 #'   \item is_member_of()
 #'   \item distance_from()
 #'   \item diversity()
+#'   \item some functions to investigate how many copies of the sequences there
+#'   are.
 #'   \item ...
 #' }
 #'
@@ -49,4 +69,3 @@
     return(TRUE)
   }
 )
-
