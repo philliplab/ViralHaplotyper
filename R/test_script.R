@@ -1,11 +1,3 @@
-#' A test script
-#' @param msg A messge
-#' @export
-
-helloViralHaplotyper <- function(msg){
-  print(msg)
-}
-
 #' Reads in the sequence data
 #'
 #' This function currently just calls readAAStringSet in the Biostrings
