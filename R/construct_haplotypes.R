@@ -24,7 +24,25 @@
 #' algorithm.
 #' @export
 
-construct_haplotypes <- function(seq_data, cluster_method = 'unqiue', 
+construct_haplotypes <- function(seq_data, cluster_method = 'unique', 
                                  cluster_params = list(NULL)){
-  return(0)
+  haplotypes <- list()
+  if (cluster_method == 'unique'){
+    seq_uniq <- unique(seq_data)
+    seq_tab <- table(seq_uniq)
+    for (i in seq_along(seq_uniq)){
+      copies_list <- list()
+      n_copies <- seq_tab[i]
+      names(n_copies) <- NULL
+      other_sequences <- names(seq_data)[seq_uniq[i] == seq_data]
+      copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
+                                                other_sequences = other_sequences)
+      haplotypes[[i]] <- list(name = names(seq_uniq)[i],
+                              sequences = seq_uniq[i],
+                              distance = stringDist,
+                              threshold = 5,
+                              copies = copies_list)
+    }
+  }
+  return(haplotypes)
 }

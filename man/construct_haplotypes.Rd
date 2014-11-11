@@ -3,7 +3,7 @@
 \alias{construct_haplotypes}
 \title{Given a set of sequences, extract the haplotypes.}
 \usage{
-construct_haplotypes(seq_data, cluster_method = "unqiue",
+construct_haplotypes(seq_data, cluster_method = "unique",
   cluster_params = list(NULL))
 }
 \arguments{

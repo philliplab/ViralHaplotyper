@@ -21,8 +21,9 @@
 #'
 #' To handle the non-uniquess of the sequences, the input sequences specified
 #' will only include unique sequences. The names associated with those
-#' sequences must the the first (when sorted with sort()) sequence name of all
-#' the sequences that are identical. A further list will be included in the
+#' sequences are the names allocated by the uniq method for the data structure
+#' that was used to store the sequence. Usually an XStringSet from the
+#' biostrings package. A further list will be included in the
 #' haplotype data structure that contains for each input name, the number of
 #' sequences that are identical to it and a character vector of their names.
 #'
