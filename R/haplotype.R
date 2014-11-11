@@ -33,3 +33,20 @@
 #' users to select which distance needs to be used. The wrapper can be extended
 #' over time to include both distance functions as well as others. Start by
 #' using stringDist and allowing the use of a custom substitution matrix.
+
+#' @rdname Haplotype
+#' @aliases Haplotype-class
+#' @exportClass Haplotype
+#' @export .Haplotype
+
+.Haplotype <- setClass(
+  Class = 'Haplotype',
+  representation = representation(
+    name = 'character',
+    sequences = 'character'),
+
+  validity = function(object){
+    return(TRUE)
+  }
+)
+
