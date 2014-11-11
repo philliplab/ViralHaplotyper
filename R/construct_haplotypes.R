@@ -22,10 +22,17 @@
 #' haplotypes
 #' @param cluster_params A list of input parameters to the clustering
 #' algorithm.
+#' @param distance A function that can compute a distance between a genetic
+#' string and a set of genetic strings. More details in 
+#' \code{\link{Haplotype-class}}
+#' @param threshold The threshold the distance function must be under in order
+#' for a new sequence to be considered part of the haplotype
 #' @export
 
 construct_haplotypes <- function(seq_data, cluster_method = 'unique', 
-                                 cluster_params = list(NULL)){
+                                 cluster_params = list(NULL),
+                                 distance = function(){return(1)},
+                                 threshold = 0){
   haplotypes <- list()
   if (cluster_method == 'unique'){
     seq_uniq <- unique(seq_data)
@@ -37,10 +44,9 @@ construct_haplotypes <- function(seq_data, cluster_method = 'unique',
       other_sequences <- names(seq_data)[seq_uniq[i] == seq_data]
       copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
                                                 other_sequences = other_sequences)
-      haplotypes[[i]] <- list(name = names(seq_uniq)[i],
-                              sequences = seq_uniq[i],
-                              distance = stringDist,
-                              threshold = 5,
+      haplotypes[[i]] <- .Haplotype(sequences = BStringSet(seq_uniq[i]),
+                              distance = distance,
+                              threshold = threshold,
                               copies = copies_list)
     }
   }

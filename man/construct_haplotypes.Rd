@@ -4,7 +4,8 @@
 \title{Given a set of sequences, extract the haplotypes.}
 \usage{
 construct_haplotypes(seq_data, cluster_method = "unique",
-  cluster_params = list(NULL))
+  cluster_params = list(NULL), distance = function() {     return(1) },
+  threshold = 0)
 }
 \arguments{
 \item{seq_data}{The input data}
@@ -14,6 +15,13 @@ haplotypes}
 
 \item{cluster_params}{A list of input parameters to the clustering
 algorithm.}
+
+\item{distance}{A function that can compute a distance between a genetic
+string and a set of genetic strings. More details in
+\code{\link{Haplotype-class}}}
+
+\item{threshold}{The threshold the distance function must be under in order
+for a new sequence to be considered part of the haplotype}
 }
 \value{
 A list of objects of class \code{\link{Haplotype-class}}

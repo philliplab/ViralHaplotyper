@@ -54,7 +54,11 @@
 #' users to select which distance needs to be used. The wrapper can be extended
 #' over time to include both distance functions as well as others. Start by
 #' using stringDist and allowing the use of a custom substitution matrix.
-
+#'
+#' We do not want to compute a distance matrix, but only the vector of
+#' distances between the new vector and each member of the haplotype. The
+#' standard dist() based approach is thus unsuitable. 
+#'
 #' @rdname Haplotype
 #' @aliases Haplotype-class
 #' @exportClass Haplotype
@@ -63,9 +67,10 @@
 .Haplotype <- setClass(
   Class = 'Haplotype',
   representation = representation(
-    name = 'character',
-    sequences = 'character'),
-
+    sequences = 'BStringSet',
+    distance = 'function',
+    threshold = 'numeric',
+    copies = 'list'),
   validity = function(object){
     return(TRUE)
   }
