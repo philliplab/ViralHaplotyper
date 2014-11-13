@@ -25,7 +25,7 @@ number of repeated sequences is large, then very substantial performance
 increases can be achieved by working on only the unique sequences. This
 performance increase is so large that it is absolutely worthwhile to
 implement special features to take advantage of it. (19.5 sec on unqiue
-sequences vs xxx sec on non-unique sequences on sample data from CAPRISA)
+sequences vs > 5 hours on non-unique sequences on sample data from CAPRISA)
 
 To handle the non-uniquess of the sequences, the input sequences specified
 will only include unique sequences. The names associated with those

@@ -36,7 +36,7 @@ construct_haplotypes <- function(seq_data, cluster_method = 'unique',
   haplotypes <- list()
   if (cluster_method == 'unique'){
     seq_uniq <- unique(seq_data)
-    seq_tab <- table(seq_data)
+    seq_tab <- BiocGenerics::table(seq_data)
     for (i in seq_along(seq_uniq)){
       curr_seq <- seq_uniq[i]
       curr_seq_name <- names(seq_uniq)[i]

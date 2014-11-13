@@ -5,16 +5,25 @@
 # If no distance measure is given, use the one included in the haplotype
 # definition.
 #
-# Given a sequence, a haplotype and a distance measure, compute the distances
-# between each sequence in the haplotype and the query sequence.
+# Given a set of sequences, a haplotype and a distance measure, compute the distances
+# between each sequence in the haplotype and each query sequence.
 #
-# Given a sequence, a haplotype and a distance measure, compute the average (or
-# median or min or max or some other metric) of the distances between the query
+# Given a set of sequences, a haplotype and a distance measure, compute the average (or
+# median or min or max or some other metric) of the distances between each query
 # sequence and the haplotype sequences. Optionally assign weights based on the
 # number of copies of each sequence in the haplotype.
 #
 # Given a sequence, a haplotype, a distance measure and a threshold, make a
 # call about whether or not a sequence belongs to a haplotype.
+#
+# The distance function must have some special properties:
+#  - It must not compute a distance matrix, it must compute a vector of
+#  distances between each given element and the query element. Think the
+#  difference between pairwiseAlignment() and dist()
+#
+# Let's add the further convention that the first argument to the distance
+# function must be the vector of targets and the second argument the query
+# sequence.
 
 #' Computes the distances between query sequences and the members of a
 #' haplotype
@@ -39,8 +48,13 @@ setMethod("seq_hap_distances",
           c('Haplotype', 'BStringSet'),
 
 function(haplotype, query_sequences){
-  return(1)
+  all_dists <- NULL
+  for (query_sequence_id in seq_along(query_sequences)){
+    query_sequence <- query_sequences[query_sequence_id]
+    all_dists <- c(all_dists,
+                   score(pairwiseAlignment(gsub('-', '', haplotype@sequences), query_sequences)))
+  }
+  return(all_dists)
 }
-  
 )
 
