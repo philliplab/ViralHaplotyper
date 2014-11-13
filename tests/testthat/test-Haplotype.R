@@ -31,7 +31,3 @@ test_that('Haplotype constructor works for a duplicated sequence', {
 
   expect_that(y, is_a('Haplotype'))
 })
-
-
-
-
