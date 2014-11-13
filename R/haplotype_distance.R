@@ -25,6 +25,12 @@
 # function must be the vector of targets and the second argument the query
 # sequence.
 
+dist_pwa <- function(target_sequences, query_sequence, substitutionMatrix = NULL){
+  return(score(pairwiseAlignment(gsub('-', '', target_sequences), 
+                                 gsub('-', '', query_sequence),
+                                 substitutionMatrix = substitutionMatrix)))
+}
+
 #' Computes the distances between query sequences and the members of a
 #' haplotype
 #'
@@ -48,11 +54,12 @@ setMethod("seq_hap_distances",
           c('Haplotype', 'BStringSet'),
 
 function(haplotype, query_sequences){
-  all_dists <- NULL
+  hap_sequences <- haplotype@sequences
+  all_dists <- matrix(-1, nrow = length(hap_sequences),
+                      ncol = length(query_sequences))
   for (query_sequence_id in seq_along(query_sequences)){
     query_sequence <- query_sequences[query_sequence_id]
-    all_dists <- c(all_dists,
-                   score(pairwiseAlignment(gsub('-', '', haplotype@sequences), query_sequences)))
+    all_dists[, query_sequence_id] <- dist_pwa(hap_sequences, query_sequence)
   }
   return(all_dists)
 }
