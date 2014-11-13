@@ -2,6 +2,7 @@
 
 export(.Haplotype)
 export(construct_haplotypes)
+export(dist_pwa)
 export(read_seq_data)
 export(seq_hap_distances)
 exportClasses(Haplotype)

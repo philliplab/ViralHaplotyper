@@ -17,7 +17,8 @@ seq_hap_distances(haplotype, query_sequences)
 }
 \value{
 A matrix of the distances between each query sequence and each
-sequence in the haplotype.
+sequence in the haplotype. The haplotype sequences correspond to the rows
+and the query sequences correspond to the columns.
 }
 \description{
 Computes the distances between query sequences and the members of a

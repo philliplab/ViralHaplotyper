@@ -25,6 +25,15 @@
 # function must be the vector of targets and the second argument the query
 # sequence.
 
+#' Computes the distances between set of target sequences and a single query
+#' sequence
+#'
+#' @return A vector of the distances between each target sequence and the
+#' query sequence.
+#' @param target_sequences A BStringSet of target sequences
+#' @param query_sequence The sequence whose distance from the target sequences
+#' must be computed
+#' @export
 dist_pwa <- function(target_sequences, query_sequence, substitutionMatrix = NULL){
   return(score(pairwiseAlignment(gsub('-', '', target_sequences), 
                                  gsub('-', '', query_sequence),
@@ -35,7 +44,8 @@ dist_pwa <- function(target_sequences, query_sequence, substitutionMatrix = NULL
 #' haplotype
 #'
 #' @return A matrix of the distances between each query sequence and each
-#' sequence in the haplotype.
+#' sequence in the haplotype. The haplotype sequences correspond to the rows
+#' and the query sequences correspond to the columns.
 #'
 #' @param haplotype The haplotype the sequence must be compared to.
 #' @param query_sequences The sequences to be compared to the haplotype.
