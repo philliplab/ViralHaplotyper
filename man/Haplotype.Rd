@@ -66,5 +66,24 @@ using stringDist and allowing the use of a custom substitution matrix.
 We do not want to compute a distance matrix, but only the vector of
 distances between the new vector and each member of the haplotype. The
 standard dist() based approach is thus unsuitable.
+
+However, when plotting the phylogenetic tree of the haplotype, the distance
+matrix is required. Does this mean that two different distance functions
+must be suplied? Or is there an elegant way of using 1 for both these
+purposes?
+
+Brainstorming some ideas:
+
+Two different functions: dist1_pwa and dist2_pwa for example. The first one
+computes the distances between a value and a vector and the second one
+computes the normal distance matrix. This leads to extra complexity when
+constructing the objects (an extra complicated argument) but it will be
+vastly faster than computing a distance matrix and only selecting out one
+column in the end?
+
+One single function: Two options, a distance function that output a distance
+object so that you then only use 1 column - extremely computationally
+inefficient OR a distance function like dist1_pwa and then you have to
+manually construct the distance matrix?
 }
 
