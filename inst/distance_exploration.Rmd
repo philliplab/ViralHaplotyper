@@ -27,3 +27,27 @@ The problems with these functions are:
     the distance - hence it still need to be normalized.
   * Does not return a matrix of distances, so some code is needed to convert
     the vectors into a matrix of distances (or a distance object)
+
+We need to compute distances based mostly on AA with custom substitution
+matrics. This means that pairwiseAlignment / stringDist are the only options.
+
+Furthermore, two different functions are needed:
+
+dist(BStringSet) -> distance matrix
+dist2(BStringSet, BStringSet) -> matrix with distances between all elements in
+first stringset and the second stringset, but not the distances between the
+individuals in either stringset and other members of the same stringset
+
+This can be simplified to just one function where the second BStringSet can be
+null indicating that the 'normal' distance matrix must be computed. Or will
+this lead to confusion? -> write two separate functions and later wrap them if
+needed.
+
+Naming convention for the functions:
+* Really hard to come up with names that maintain consistancy with the other
+  distance functions already in use.
+* Drop consistancy with ape - since Im using Biostrings, there is no point in
+  trying to stay consistent with ape.
+* stringDistVec and stringDistQuery for a distance matrix between a vector of
+  strings and a distance to some query sequence? This is not working for me,
+  but this can be the internal names which them get wrapped by stringDist2
