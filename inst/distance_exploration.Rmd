@@ -51,3 +51,39 @@ Naming convention for the functions:
 * stringDistVec and stringDistQuery for a distance matrix between a vector of
   strings and a distance to some query sequence? This is not working for me,
   but this can be the internal names which them get wrapped by stringDist2
+
+stringDist2(pattern, subject = NULL, ...)
+  if (is.null(subject))
+    stringDistVec(pattern, ...)
+  else
+    stringDistQuery(pattern, subject, ...)
+
+
+maxAlignmentScores(pattern, subject = NULL, ...)
+  if (is.null(subject))
+    maxAlignmentScoresVec(pattern, ...)
+  else
+    maxAlignmentScoresQuery(pattern, subject, ...)
+
+weird_max <- function(x, y){
+  z <- data.frame(x = x, y = y)
+  return(apply(z, 1, max))
+}
+
+maxAlignmentScoresVec(pattern, ...)
+  max_scores <- maxAlignemntScores1d(pattern)
+  outer(max_scores, max_scores, weird_max)
+
+maxAlignmentScoresQuery(pattern, subject, ...)
+  max_scores_x <- maxAlignemntScores1d(pattern)
+  max_scores_y <- maxAlignemntScores1d(subject)
+  outer(max_scores_x, max_scores_y, weird_max)
+
+maxAlignmentScore <- function(x, scores, alphabet = AA_ALPHABET){
+  # self_alignment_scores is a names vector
+  counts <- letterFrequency(x, alphabet)
+  sum(scores[match(names(counts), names(scores))]*counts)
+}
+
+maxAlignmentScore1d <- Vectorize(maxAlignmentScore) # Figure out how vectorize
+works
