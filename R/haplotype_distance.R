@@ -74,4 +74,3 @@ function(haplotype, query_sequences){
   return(all_dists)
 }
 )
-

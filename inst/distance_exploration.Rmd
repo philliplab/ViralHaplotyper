@@ -1,0 +1,29 @@
+Exploring Genetic Distances in R
+================================
+
+Distances between genetic material in R is a complicated topic. There are two
+main packages that implements distance functions:
+* ape::dist.dna
+* Biostrings::stringDist and Biostrings::pairwiseAlignment
+
+The problems with these functions are:
+* ape::dist.dna
+  * Only for DNA not for AA
+  * Cannot handle gap opening / gap extention penalties? (Not sure)
+  * Always computes a distance matrix for a vector of strings. Computationally
+    inefficient for computing a distance between a single string and a vector
+    (or need some coding to make it efficient)
+* Biostrings::stringDist
+  * Works fine for like an edit distance
+  * Uses Biostrings::pairwiseAlignment to compute alignment based distances.
+    Thus all the problems of that function applies
+  * Always computes a distance matrix for a vector of strings. Computationally
+    inefficient for computing a distance between a single string and a vector
+    (or need some coding to make it efficient)
+* Biostrings::pairwiseAlignment
+  * Aligns a single pattern to a vector of subjects.
+  * Can return various statistics
+  * When using a substitution matrix, the similarity score is returned and not
+    the distance - hence it still need to be normalized.
+  * Does not return a matrix of distances, so some code is needed to convert
+    the vectors into a matrix of distances (or a distance object)
