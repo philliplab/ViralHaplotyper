@@ -52,12 +52,31 @@ Naming convention for the functions:
   strings and a distance to some query sequence? This is not working for me,
   but this can be the internal names which them get wrapped by stringDist2
 
+
 stringDist2(pattern, subject = NULL, ...)
   if (is.null(subject))
     stringDistVec(pattern, ...)
   else
     stringDistQuery(pattern, subject, ...)
 
+stringDistVec <- function(pattern){
+  x <- stringDist(pattern)
+  y <- maxAlignmentScores(patter)
+  x / y # check elementwize behaviour
+}
+
+stringDistQuery <- function(pattern, subject, ...){
+  all_sim_scores <- matrix(-1, nrow = length(pattern),
+                      ncol = length(subject))
+  for (subject_id in seq_along(subject)){
+    the_subject <- subject[subject_id]
+    all_sim_scores[, subject_id] <- score(pairwiseAlignment(pattern, the_subject, ...))
+  }
+
+  max_sim_scores <- maxAlignmentScores(pattern, subject)
+
+  all_sim_scores / max_sim_scores # check elementwize behaviour
+}
 
 maxAlignmentScores(pattern, subject = NULL, ...)
   if (is.null(subject))
@@ -65,25 +84,26 @@ maxAlignmentScores(pattern, subject = NULL, ...)
   else
     maxAlignmentScoresQuery(pattern, subject, ...)
 
-weird_max <- function(x, y){
+apply_max <- function(x, y){  # Very large optimization possible?
   z <- data.frame(x = x, y = y)
   return(apply(z, 1, max))
 }
 
 maxAlignmentScoresVec(pattern, ...)
   max_scores <- maxAlignemntScores1d(pattern)
-  outer(max_scores, max_scores, weird_max)
+  outer(max_scores, max_scores, apply_max)
 
 maxAlignmentScoresQuery(pattern, subject, ...)
   max_scores_x <- maxAlignemntScores1d(pattern)
   max_scores_y <- maxAlignemntScores1d(subject)
   outer(max_scores_x, max_scores_y, weird_max)
 
-maxAlignmentScore <- function(x, scores, alphabet = AA_ALPHABET){
+maxAlignmentScore <- function(x, scores = diag(BLOSUM50), 
+                              alphabet = AA_ALPHABET){
   # self_alignment_scores is a names vector
   counts <- letterFrequency(x, alphabet)
   sum(scores[match(names(counts), names(scores))]*counts)
 }
 
 maxAlignmentScore1d <- Vectorize(maxAlignmentScore) # Figure out how vectorize
-works
+    # works
