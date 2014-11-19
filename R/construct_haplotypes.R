@@ -9,6 +9,7 @@
 #' @export
 
 construct_haplotypes_unique <- function(seq_data, cluster_params){
+  haplotypes <- list()
   seq_uniq <- unique(seq_data)
   seq_tab <- BiocGenerics::table(seq_data)
   for (i in seq_along(seq_uniq)){
@@ -25,6 +26,7 @@ construct_haplotypes_unique <- function(seq_data, cluster_params){
                                   sequences = BStringSet(seq_uniq[i]),
                                   copies = copies_list)
   }
+  return(haplotypes)
 }
 
 #' Given a set of sequences, extract the haplotypes using the 'single' approach
@@ -38,6 +40,7 @@ construct_haplotypes_unique <- function(seq_data, cluster_params){
 #' @export
 
 construct_haplotypes_single <- function(seq_data, cluster_params){
+  haplotypes <- list()
   seq_uniq <- unique(seq_data)
   seq_tab <- BiocGenerics::table(seq_data)
   copies_list <- list()
@@ -54,6 +57,7 @@ construct_haplotypes_single <- function(seq_data, cluster_params){
   haplotypes[[1]] <- .Haplotype(name = 'hap',
                                 sequences = BStringSet(seq_uniq),
                                 copies = copies_list)
+  return(haplotypes)
 }
 
 #' Given a set of sequences, extract the haplotypes.
