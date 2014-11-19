@@ -2,8 +2,5 @@
 
 export(.Haplotype)
 export(construct_haplotypes)
-export(dist_pwa)
 export(get_test_AAStringSet)
-export(read_seq_data)
-export(seq_hap_distances)
 exportClasses(Haplotype)

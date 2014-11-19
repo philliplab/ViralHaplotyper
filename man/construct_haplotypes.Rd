@@ -14,32 +14,16 @@ haplotypes}
 
 \item{cluster_params}{A list of input parameters to the clustering
 algorithm.}
-
-\item{distance}{A function that can compute a distance between a genetic
-string and a set of genetic strings. More details in
-\code{\link{Haplotype-class}}}
-
-\item{threshold}{The threshold the distance function must be under in order
-for a new sequence to be considered part of the haplotype}
 }
 \value{
 A list of objects of class \code{\link{Haplotype-class}}
 }
 \description{
-The clustering approach to use is described using the list cluster_params.
+Various different methods can be used to construct the haplotypes. The
+following are currently implemented:
+\itemize{
+  \item{unique - Each unique sequence is a haplotype}
+  \item{single - The entire dataset is a single haplotype}
 }
-\details{
-The simplest haplotype construction approach is to see each unique sequence
-as a haplotype. This is achieved by specifying inputs of cluter_method =
-'unique' and cluster_params = list(NULL).
-
-Dealing with non-unique sequences leads to several complications.
-See the documentation of \code{\link{Haplotype-class}} for more details on
-the storing the non-unique data.
-
-I am currently unsure about the best approach to follow for clustering with
-the non-unique data. Just clustering with the unique data will probably
-produce different results from clustering when the non-unique data is
-included. This is a big problem to deal with in the future.
 }
 
