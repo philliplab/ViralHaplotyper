@@ -102,3 +102,31 @@ function(the_haplotype){
   
 )
 
+#' Returns the count of all sequences in the haplotype
+#'
+#' @param the_haplotype The haplotype whose sequences must be counted.
+#' @rdname total_number_of_sequences-methods
+#' @export total_number_of_sequences
+
+setGeneric("total_number_of_sequences",
+           function(the_haplotype){
+             standardGeneric("total_number_of_sequences")
+           }
+)
+
+#' @rdname total_number_of_sequences-methods
+#' @aliases total_number_of_sequences
+setMethod("total_number_of_sequences", 
+          c('Haplotype'),
+
+function(the_haplotype){
+  total_seq <- 0
+  copies <- the_haplotype@copies
+  for (i in seq_along(copies)){
+    total_seq <- total_seq + copies[[i]]$n_copies
+  }
+  return(total_seq)
+}
+  
+)
+
