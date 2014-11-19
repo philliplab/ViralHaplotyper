@@ -27,6 +27,35 @@ construct_haplotypes_unique <- function(seq_data, cluster_params){
   }
 }
 
+#' Given a set of sequences, extract the haplotypes using the 'single' approach
+#'
+#' A single haplotype will be constructed from the entire dataset. Unique
+#' sequences will be extracted and their copies will be found and the haplotype
+#' will be constructed using this information.
+#'
+#' @return A list of objects of class \code{\link{Haplotype-class}}
+#' @inheritParams construct_haplotypes
+#' @export
+
+construct_haplotypes_single <- function(seq_data, cluster_params){
+  seq_uniq <- unique(seq_data)
+  seq_tab <- BiocGenerics::table(seq_data)
+  copies_list <- list()
+  for (i in seq_along(seq_uniq)){
+    curr_seq <- seq_uniq[i]
+    curr_seq_name <- names(seq_uniq)[i]
+    n_copies <- seq_tab[names(seq_tab) == curr_seq]
+    names(n_copies) <- NULL
+    other_sequences <- names(seq_data)[seq_uniq[i] == seq_data]
+    other_sequences <- other_sequences[other_sequences != names(seq_uniq)[i]]
+    copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
+                                              other_sequences = other_sequences)
+  }
+  haplotypes[[1]] <- .Haplotype(name = 'hap',
+                                sequences = BStringSet(seq_uniq),
+                                copies = copies_list)
+}
+
 #' Given a set of sequences, extract the haplotypes.
 #'
 #' Various different methods can be used to construct the haplotypes. The
@@ -52,22 +81,7 @@ construct_haplotypes <- function(seq_data, cluster_method = 'unique',
     haplotypes <- construct_haplotypes_unique(seq_data, cluster_params)
   }
   if (cluster_method == 'single'){
-    seq_uniq <- unique(seq_data)
-    seq_tab <- BiocGenerics::table(seq_data)
-    copies_list <- list()
-    for (i in seq_along(seq_uniq)){
-      curr_seq <- seq_uniq[i]
-      curr_seq_name <- names(seq_uniq)[i]
-      n_copies <- seq_tab[names(seq_tab) == curr_seq]
-      names(n_copies) <- NULL
-      other_sequences <- names(seq_data)[seq_uniq[i] == seq_data]
-      other_sequences <- other_sequences[other_sequences != names(seq_uniq)[i]]
-      copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
-                                                other_sequences = other_sequences)
-    }
-    haplotypes[[1]] <- .Haplotype(name = 'hap',
-                                  sequences = BStringSet(seq_uniq),
-                                  copies = copies_list)
+    haplotypes <- construct_haplotypes_single(seq_data, cluster_params)
   }
   return(haplotypes)
 }

@@ -2,6 +2,7 @@
 
 export(.Haplotype)
 export(construct_haplotypes)
+export(construct_haplotypes_single)
 export(construct_haplotypes_unique)
 export(get_test_AAStringSet)
 exportClasses(Haplotype)
