@@ -30,7 +30,7 @@ test_that('Haplotype constructor works for a duplicated sequence', {
 
 test_that('get_all_sequences method works', {
   seq_aa_dat <- get_test_AAStringSet()
-  haps <- construct_haplotypes_single(seq_aa_dat, n_header_letters = 5)
+  haps <- construct_haplotypes(seq_aa_dat, 'single', n_header_letters = 5)
 
   retrieved_seq <- get_all_sequences(haps[[1]])
 
@@ -41,4 +41,15 @@ test_that('get_all_sequences method works', {
   expect_that(as.character(seq_aa_dat[128]) %in% as.character(retrieved_seq), is_true())
 
   expect_that(sort(names(seq_aa_dat)), equals(sort(names(retrieved_seq))))
+})
+
+test_that('Biostrings::concensusString works as expected', {
+  seq_aa_dat <- get_test_AAStringSet()
+  haps <- construct_haplotypes(seq_aa_dat, 'unique', n_header_letters = 5)
+  
+  hap1_uniq <- as.character(unique(get_all_sequences(haps[[1]])))
+  names(hap1_uniq) <- NULL
+  hap1_consensus <- consensusString(get_all_sequences(haps[[1]]))
+  expect_that(length(hap1_uniq), equals(1))
+  expect_that(as.character(hap1_uniq), equals(hap1_consensus))
 })
