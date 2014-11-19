@@ -133,21 +133,21 @@ get_test_AAStringSet <- function(dataset_name = 'gag_p24_n128_b001'){
 "PIVQNIQGQMVHQAISPRTLNAWVKVVEEKAFIPEVIPMFSALSEGATPQDLNTMLNTVGGHQAAMQMLKETINEEAAEWDRVHPVHAGPIAPGQMREP-RGSDIAGTTSTLQEQIGWMTNNPPIPVGEIYKRWIILGL", 
 "PIVQNIQGQMVHQAISPRTLNAWVKVVEEKAFIPEVIPMFSALSEGATPQDLNTMLNTVGGHQAAMQMLKETINEEAAEWDRVHPVHAGPIAPGQMREP-RGSDIAGTTSTLQEQIGWMTNNPPIPVGEIYKRWIILGL", 
 "PIVQNIQGQMVHQAISPRTLNAWVKVVEEKAFIPEVIPMFSALSEGATPQDLNTMLNTVGGHQAAMQMLKETINEEAAEWDRVHPVHAGPIAPGQMREP-RGSDIAGTTSTLQEQIGWMTNNPPIPVGEIYKRWIILGL"
-), .Names = c("A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", 
-"A9", "A10", "A11", "A12", "A13", "A14", "A15", "A16", "A17", 
-"A18", "A19", "A20", "A21", "A22", "A23", "A24", "A25", "A26", 
-"A27", "A28", "A29", "A30", "A31", "A32", "A33", "A34", "A35", 
-"A36", "A37", "A38", "A39", "A40", "A41", "A42", "A43", "A44", 
-"A45", "A46", "A47", "A48", "A49", "A50", "A51", "A52", "A53", 
-"A54", "A55", "A56", "A57", "A58", "A59", "A60", "A61", "A62", 
-"A63", "A64", "A65", "A66", "A67", "A68", "A69", "A70", "A71", 
-"A72", "A73", "A74", "A75", "A76", "A77", "A78", "A79", "A80", 
-"A81", "A82", "A83", "A84", "A85", "A86", "A87", "A88", "A89", 
-"A90", "A91", "A92", "A93", "A94", "A95", "A96", "A97", "A98", 
-"A99", "A100", "A101", "A102", "A103", "A104", "A105", "A106", 
-"A107", "A108", "A109", "A110", "A111", "A112", "A113", "A114", 
-"A115", "A116", "A117", "A118", "A119", "A120", "A121", "A122", 
-"A123", "A124", "A125", "A126", "A127", "A128"))
+), .Names = c("evolveagene_seq0001", "evolveagene_seq0002", "evolveagene_seq0003", "evolveagene_seq0004", "evolveagene_seq0005", "evolveagene_seq0006", "evolveagene_seq0007", "evolveagene_seq0008", 
+"evolveagene_seq0009", "evolveagene_seq0010", "evolveagene_seq0011", "evolveagene_seq0012", "evolveagene_seq0013", "evolveagene_seq0014", "evolveagene_seq0015", "evolveagene_seq0016", "evolveagene_seq0017", 
+"evolveagene_seq0018", "evolveagene_seq0019", "evolveagene_seq0020", "evolveagene_seq0021", "evolveagene_seq0022", "evolveagene_seq0023", "evolveagene_seq0024", "evolveagene_seq0025", "evolveagene_seq0026", 
+"evolveagene_seq0027", "evolveagene_seq0028", "evolveagene_seq0029", "evolveagene_seq0030", "evolveagene_seq0031", "evolveagene_seq0032", "evolveagene_seq0033", "evolveagene_seq0034", "evolveagene_seq0035", 
+"evolveagene_seq0036", "evolveagene_seq0037", "evolveagene_seq0038", "evolveagene_seq0039", "evolveagene_seq0040", "evolveagene_seq0041", "evolveagene_seq0042", "evolveagene_seq0043", "evolveagene_seq0044", 
+"evolveagene_seq0045", "evolveagene_seq0046", "evolveagene_seq0047", "evolveagene_seq0048", "evolveagene_seq0049", "evolveagene_seq0050", "evolveagene_seq0051", "evolveagene_seq0052", "evolveagene_seq0053", 
+"evolveagene_seq0054", "evolveagene_seq0055", "evolveagene_seq0056", "evolveagene_seq0057", "evolveagene_seq0058", "evolveagene_seq0059", "evolveagene_seq0060", "evolveagene_seq0061", "evolveagene_seq0062", 
+"evolveagene_seq0063", "evolveagene_seq0064", "evolveagene_seq0065", "evolveagene_seq0066", "evolveagene_seq0067", "evolveagene_seq0068", "evolveagene_seq0069", "evolveagene_seq0070", "evolveagene_seq0071", 
+"evolveagene_seq0072", "evolveagene_seq0073", "evolveagene_seq0074", "evolveagene_seq0075", "evolveagene_seq0076", "evolveagene_seq0077", "evolveagene_seq0078", "evolveagene_seq0079", "evolveagene_seq0080", 
+"evolveagene_seq0081", "evolveagene_seq0082", "evolveagene_seq0083", "evolveagene_seq0084", "evolveagene_seq0085", "evolveagene_seq0086", "evolveagene_seq0087", "evolveagene_seq0088", "evolveagene_seq0089", 
+"evolveagene_seq0090", "evolveagene_seq0091", "evolveagene_seq0092", "evolveagene_seq0093", "evolveagene_seq0094", "evolveagene_seq0095", "evolveagene_seq0096", "evolveagene_seq0097", "evolveagene_seq0098", 
+"evolveagene_seq0099", "evolveagene_seq0100", "evolveagene_seq0101", "evolveagene_seq0102", "evolveagene_seq0103", "evolveagene_seq0104", "evolveagene_seq0105", "evolveagene_seq0106", 
+"evolveagene_seq0107", "evolveagene_seq0108", "evolveagene_seq0109", "evolveagene_seq0110", "evolveagene_seq0111", "evolveagene_seq0112", "evolveagene_seq0113", "evolveagene_seq0114", 
+"evolveagene_seq0115", "evolveagene_seq0116", "evolveagene_seq0117", "evolveagene_seq0118", "evolveagene_seq0119", "evolveagene_seq0120", "evolveagene_seq0121", "evolveagene_seq0122", 
+"evolveagene_seq0123", "evolveagene_seq0124", "evolveagene_seq0125", "evolveagene_seq0126", "evolveagene_seq0127", "evolveagene_seq0128"))
     )
   return(AAStringSet(data_sets[[dataset_name]]))
 }

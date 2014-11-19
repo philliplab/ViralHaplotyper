@@ -14,6 +14,9 @@ haplotypes}
 
 \item{cluster_params}{A list of input parameters to the clustering
 algorithm.}
+
+\item{n_header_letters}{The number of letters to take from a FASTA header of
+one of the sequences and prepend to the haplotype name.}
 }
 \value{
 A list of objects of class \code{\link{Haplotype-class}}
@@ -25,5 +28,11 @@ following are currently implemented:
   \item{unique - Each unique sequence is a haplotype}
   \item{single - The entire dataset is a single haplotype}
 }
+}
+\details{
+The haplotypes are assigned names by taking the first n letters from the name
+of a random sequence (the sequence names should all be the same for the
+first n letters) and appending _hapx to it. Where is a number the that keeps
+track of the haplotype numbers.
 }
 

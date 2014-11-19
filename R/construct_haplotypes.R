@@ -69,6 +69,11 @@ construct_haplotypes_single <- function(seq_data, cluster_params){
 #'   \item{single - The entire dataset is a single haplotype}
 #' }
 #'
+#' The haplotypes are assigned names by taking the first n letters from the name
+#' of a random sequence (the sequence names should all be the same for the
+#' first n letters) and appending _hapx to it. Where is a number the that keeps
+#' track of the haplotype numbers.
+#'
 #' @return A list of objects of class \code{\link{Haplotype-class}}
 #'
 #' @param seq_data The input data
@@ -76,6 +81,8 @@ construct_haplotypes_single <- function(seq_data, cluster_params){
 #' haplotypes
 #' @param cluster_params A list of input parameters to the clustering
 #' algorithm.
+#' @param n_header_letters The number of letters to take from a FASTA header of
+#' one of the sequences and prepend to the haplotype name.
 #' @export
 
 construct_haplotypes <- function(seq_data, cluster_method = 'unique', 
