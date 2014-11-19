@@ -43,7 +43,7 @@ test_that('get_all_sequences method works', {
   expect_that(sort(names(seq_aa_dat)), equals(sort(names(retrieved_seq))))
 })
 
-test_that('Biostrings::concensusString works as expected', {
+test_that('Biostrings::consensusString works as expected', {
   seq_aa_dat <- get_test_AAStringSet()
   haps <- construct_haplotypes(seq_aa_dat, 'unique', n_header_letters = 5)
   
@@ -53,3 +53,19 @@ test_that('Biostrings::concensusString works as expected', {
   expect_that(length(hap1_uniq), equals(1))
   expect_that(as.character(hap1_uniq), equals(hap1_consensus))
 })
+
+test_that('get_unique_sequences method works', {
+  seq_aa_dat <- get_test_AAStringSet()
+  haps <- construct_haplotypes(seq_aa_dat, 'single', n_header_letters = 5)
+
+  retrieved_seq <- get_unique_sequences(haps[[1]])
+
+  expect_that(length(retrieved_seq), equals(length(unique(seq_aa_dat))))
+  expect_that(as.character(seq_aa_dat[1]) %in% as.character(retrieved_seq), is_true())
+  expect_that(as.character(seq_aa_dat[10]) %in% as.character(retrieved_seq), is_true())
+  expect_that(as.character(seq_aa_dat[100]) %in% as.character(retrieved_seq), is_true())
+  expect_that(as.character(seq_aa_dat[128]) %in% as.character(retrieved_seq), is_true())
+})
+
+
+

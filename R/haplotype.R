@@ -78,3 +78,27 @@ function(the_haplotype){
   
 )
 
+#' Returns the unique sequences of a haplotype
+#'
+#' @param the_haplotype The haplotype from which the unique sequences must be
+#' extracted
+#' @rdname get_unique_sequences-methods
+#' @export get_unique_sequences
+
+setGeneric("get_unique_sequences",
+           function(the_haplotype){
+             standardGeneric("get_unique_sequences")
+           }
+)
+
+#' @rdname get_unique_sequences-methods
+#' @aliases get_unique_sequences
+setMethod("get_unique_sequences", 
+          c('Haplotype'),
+
+function(the_haplotype){
+  return(the_haplotype@sequences)
+}
+  
+)
+
