@@ -67,5 +67,12 @@ test_that('get_unique_sequences method works', {
   expect_that(as.character(seq_aa_dat[128]) %in% as.character(retrieved_seq), is_true())
 })
 
+test_that('total_number_of_sequences works', {
+  seq_aa_dat <- get_test_AAStringSet()
+  haps <- construct_haplotypes(seq_aa_dat, 'single', n_header_letters = 5)
 
+  total_seq <- total_number_of_sequences(haps[[1]])
+
+  expect_that(total_seq, equals(length(seq_aa_dat)))
+})
 
