@@ -1,7 +1,7 @@
 Package: ViralHaplotyper
 Title: Viral Haplotyper
 Description: Investigates haplotypes present in aplicon sequencing of viral
-    genetic material.
+    genetic material in a single dataset. (Only one patient / timepoint)
 Version: 0.1
 Author: Phillip Labuschagne <philliplab@gmail.com>
 Maintainer: Phillip Labuschagne <philliplab@gmail.com>
