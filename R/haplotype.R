@@ -42,3 +42,39 @@
     }
   }
 )
+
+#' Returns all the sequences of a haplotype
+#'
+#' @param the_haplotype The haplotype from which the sequences must be
+#' extracted
+#' @rdname get_all_sequences-methods
+#' @export get_all_sequences
+
+setGeneric("get_all_sequences",
+           function(the_haplotype){
+             standardGeneric("get_all_sequences")
+           }
+)
+
+#' @rdname get_all_sequences-methods
+#' @aliases get_all_sequences
+setMethod("get_all_sequences", 
+          c('Haplotype'),
+
+function(the_haplotype){
+  all_seq <- BStringSet()
+  copies <- the_haplotype@copies
+  for (i in seq_along(copies)){
+    the_copy <- copies[[i]]
+    seq_name <- names(copies)[i]
+    copy_seq <- the_haplotype@sequences[seq_name]
+    seq_names <- c(seq_name, the_copy$other_sequences)
+    rep_seq <- rep(copy_seq, the_copy$n_copies)
+    names(rep_seq) <- seq_names
+    all_seq <- c(all_seq, rep_seq)
+  }
+  return(all_seq)
+}
+  
+)
+
