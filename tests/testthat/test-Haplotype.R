@@ -72,7 +72,9 @@ test_that('total_number_of_sequences works', {
   haps <- construct_haplotypes(seq_aa_dat, 'single', n_header_letters = 5)
 
   total_seq <- total_number_of_sequences(haps[[1]])
+  uniq_seq <- number_of_unique_sequences(haps[[1]])
 
   expect_that(total_seq, equals(length(seq_aa_dat)))
+  expect_that(uniq_seq, equals(length(unique(seq_aa_dat))))
 })
 
