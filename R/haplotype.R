@@ -130,3 +130,26 @@ function(the_haplotype){
   
 )
 
+#' Returns the count of the unique sequences in the haplotype
+#'
+#' @param the_haplotype The haplotype whose sequences must be counted.
+#' @rdname number_of_unique_sequences-methods
+#' @export number_of_unique_sequences
+
+setGeneric("number_of_unique_sequences",
+           function(the_haplotype){
+             standardGeneric("number_of_unique_sequences")
+           }
+)
+
+#' @rdname number_of_unique_sequences-methods
+#' @aliases number_of_unique_sequences
+setMethod("number_of_unique_sequences", 
+          c('Haplotype'),
+
+function(the_haplotype){
+  return(length(the_haplotype@sequences))
+}
+  
+)
+
