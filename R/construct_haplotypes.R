@@ -30,9 +30,7 @@
 #' @export
 
 construct_haplotypes <- function(seq_data, cluster_method = 'unique', 
-                                 cluster_params = list(NULL),
-                                 distance = function(){return(1)},
-                                 threshold = 0){
+                                 cluster_params = list(NULL)){
   haplotypes <- list()
   if (cluster_method == 'unique'){
     seq_uniq <- unique(seq_data)
@@ -47,10 +45,9 @@ construct_haplotypes <- function(seq_data, cluster_method = 'unique',
       other_sequences <- other_sequences[other_sequences != names(seq_uniq)[i]]
       copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
                                                 other_sequences = other_sequences)
-      haplotypes[[i]] <- .Haplotype(sequences = BStringSet(seq_uniq[i]),
-                              distance = distance,
-                              threshold = threshold,
-                              copies = copies_list)
+      haplotypes[[i]] <- .Haplotype(name = 'hap',
+                                    sequences = BStringSet(seq_uniq[i]),
+                                    copies = copies_list)
     }
   }
   if (cluster_method == 'single'){
@@ -67,10 +64,9 @@ construct_haplotypes <- function(seq_data, cluster_method = 'unique',
       copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
                                                 other_sequences = other_sequences)
     }
-    haplotypes[[1]] <- .Haplotype(sequences = BStringSet(seq_uniq),
-                            distance = distance,
-                            threshold = threshold,
-                            copies = copies_list)
+    haplotypes[[1]] <- .Haplotype(name = 'hap',
+                                  sequences = BStringSet(seq_uniq),
+                                  copies = copies_list)
   }
   return(haplotypes)
 }
