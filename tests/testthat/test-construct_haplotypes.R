@@ -1,8 +1,17 @@
 context('Construct Haplotypes')
 
 test_that('unqiue haplotype construction approach is working', {
-  x <- get_test_AAStringSet()
-  y <- construct_haplotypes(x)
-  expect_that(y, is_a('list'))
-  expect_that(y[[1]], is_a('Haplotype'))
+  seq_aa_dat <- get_test_AAStringSet()
+  haps <- construct_haplotypes_unique(seq_aa_dat)
+  expect_that(haps, is_a('list'))
+  expect_that(haps[[1]], is_a('Haplotype'))
+  expect_that(length(haps), equals(length(unique(seq_aa_dat))))
+})
+
+test_that('single haplotype construction approach is working', {
+  seq_aa_dat <- get_test_AAStringSet()
+  haps <- construct_haplotypes_single(seq_aa_dat)
+  expect_that(haps, is_a('list'))
+  expect_that(haps[[1]], is_a('Haplotype'))
+  expect_that(length(haps), equals(1))
 })
