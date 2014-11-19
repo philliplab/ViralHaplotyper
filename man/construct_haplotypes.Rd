@@ -4,7 +4,7 @@
 \title{Given a set of sequences, extract the haplotypes.}
 \usage{
 construct_haplotypes(seq_data, cluster_method = "unique",
-  cluster_params = list(NULL))
+  cluster_params = list(NULL), n_header_letters = 1)
 }
 \arguments{
 \item{seq_data}{The input data}

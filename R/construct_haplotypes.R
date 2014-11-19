@@ -8,11 +8,17 @@
 #' @inheritParams construct_haplotypes
 #' @export
 
-construct_haplotypes_unique <- function(seq_data, cluster_params){
+construct_haplotypes_unique <- function(seq_data, cluster_params, n_header_letters){
   haplotypes <- list()
   seq_uniq <- unique(seq_data)
   seq_tab <- BiocGenerics::table(seq_data)
+  if (n_header_letters == 0){
+    hap_name_pref <- ""
+  } else {
+    hap_name_pref <- substr(names(seq_data)[1], 1, n_header_letters)
+  }
   for (i in seq_along(seq_uniq)){
+    hap_name <- paste0(hap_name_pref, sprintf("%05d", i))
     curr_seq <- seq_uniq[i]
     curr_seq_name <- names(seq_uniq)[i]
     copies_list <- list()
@@ -22,7 +28,7 @@ construct_haplotypes_unique <- function(seq_data, cluster_params){
     other_sequences <- other_sequences[other_sequences != names(seq_uniq)[i]]
     copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
                                               other_sequences = other_sequences)
-    haplotypes[[i]] <- .Haplotype(name = 'hap',
+    haplotypes[[i]] <- .Haplotype(name = hap_name,
                                   sequences = BStringSet(seq_uniq[i]),
                                   copies = copies_list)
   }
@@ -39,8 +45,14 @@ construct_haplotypes_unique <- function(seq_data, cluster_params){
 #' @inheritParams construct_haplotypes
 #' @export
 
-construct_haplotypes_single <- function(seq_data, cluster_params){
+construct_haplotypes_single <- function(seq_data, cluster_params, n_header_letters){
   haplotypes <- list()
+  if (n_header_letters == 0){
+    hap_name_pref <- ""
+  } else {
+    hap_name_pref <- substr(names(seq_data)[1], 1, n_header_letters)
+  }
+  hap_name <- paste0(hap_name_pref, "00001")
   seq_uniq <- unique(seq_data)
   seq_tab <- BiocGenerics::table(seq_data)
   copies_list <- list()
@@ -54,7 +66,7 @@ construct_haplotypes_single <- function(seq_data, cluster_params){
     copies_list[[names(seq_uniq)[i]]] <- list(n_copies = n_copies,
                                               other_sequences = other_sequences)
   }
-  haplotypes[[1]] <- .Haplotype(name = 'hap',
+  haplotypes[[1]] <- .Haplotype(name = hap_name,
                                 sequences = BStringSet(seq_uniq),
                                 copies = copies_list)
   return(haplotypes)
@@ -86,13 +98,14 @@ construct_haplotypes_single <- function(seq_data, cluster_params){
 #' @export
 
 construct_haplotypes <- function(seq_data, cluster_method = 'unique', 
-                                 cluster_params = list(NULL)){
+                                 cluster_params = list(NULL),
+                                 n_header_letters = 1){
   haplotypes <- list()
   if (cluster_method == 'unique'){
-    haplotypes <- construct_haplotypes_unique(seq_data, cluster_params)
+    haplotypes <- construct_haplotypes_unique(seq_data, cluster_params, n_header_letters)
   }
   if (cluster_method == 'single'){
-    haplotypes <- construct_haplotypes_single(seq_data, cluster_params)
+    haplotypes <- construct_haplotypes_single(seq_data, cluster_params, n_header_letters)
   }
   return(haplotypes)
 }

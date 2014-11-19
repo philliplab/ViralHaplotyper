@@ -3,13 +3,16 @@
 \alias{construct_haplotypes_unique}
 \title{Given a set of sequences, extract the haplotypes using the 'unique' approach}
 \usage{
-construct_haplotypes_unique(seq_data, cluster_params)
+construct_haplotypes_unique(seq_data, cluster_params, n_header_letters)
 }
 \arguments{
 \item{seq_data}{The input data}
 
 \item{cluster_params}{A list of input parameters to the clustering
 algorithm.}
+
+\item{n_header_letters}{The number of letters to take from a FASTA header of
+one of the sequences and prepend to the haplotype name.}
 }
 \value{
 A list of objects of class \code{\link{Haplotype-class}}
