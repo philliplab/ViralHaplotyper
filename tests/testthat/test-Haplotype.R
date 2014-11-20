@@ -78,3 +78,15 @@ test_that('total_number_of_sequences works', {
   expect_that(uniq_seq, equals(length(unique(seq_aa_dat))))
 })
 
+test_that('get_unique_sequence_details works', {
+  seq_aa_dat <- get_test_AAStringSet()
+  haps <- construct_haplotypes(seq_aa_dat, 'single', n_header_letters = 5)
+  usd <- get_unique_sequence_details(haps[[1]])
+
+  expect_that(usd, is_a('list'))
+  expect_that(sort(names(usd)), equals(sort(c("details", "unique_sequences"))))
+  expect_that(usd$details, is_a('data.frame'))
+  expect_that(usd$unique_sequences, is_a('BStringSet'))
+  expect_that(sort(as.character(usd$details$long_label)), 
+              equals(sort(names(usd$unique_sequences))))
+})
