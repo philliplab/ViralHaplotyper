@@ -21,8 +21,11 @@ shinyServer(function(input, output, session) {
   })
 
   single_haplotypes <- reactive({
-    return(construct_haplotypes(read_data()$seq_data$data_set, 'single', 
-                                n_header_letters = input$hap_name_chars))
+    input$goButton
+    isolate({
+      return(construct_haplotypes(read_data()$seq_data$data_set, 'single', 
+                                  n_header_letters = input$hap_name_chars))
+    })
   })
 
   unique_sequence_list <- reactive({
