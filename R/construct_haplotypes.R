@@ -17,8 +17,12 @@ construct_haplotypes_unique <- function(seq_data, cluster_params, n_header_lette
   } else {
     hap_name_pref <- substr(names(seq_data)[1], 1, n_header_letters)
   }
+  max_haplotype_number_length <- nchar(as.character(length(seq_uniq)))
   for (i in seq_along(seq_uniq)){
-    hap_name <- paste0(hap_name_pref, sprintf("%05d", i))
+    cur_haplotype_number_length <- nchar(as.character(i))
+    hap_name <- paste0(hap_name_pref, "_", 
+                       rep("0", max_haplotype_number_length - cur_haplotype_number_length),
+                       i)
     curr_seq <- seq_uniq[i]
     curr_seq_name <- names(seq_uniq)[i]
     copies_list <- list()
@@ -52,7 +56,7 @@ construct_haplotypes_single <- function(seq_data, cluster_params, n_header_lette
   } else {
     hap_name_pref <- substr(names(seq_data)[1], 1, n_header_letters)
   }
-  hap_name <- paste0(hap_name_pref, "00001")
+  hap_name <- paste0(hap_name_pref, "_", "1")
   seq_uniq <- unique(seq_data)
   seq_tab <- BiocGenerics::table(seq_data)
   copies_list <- list()

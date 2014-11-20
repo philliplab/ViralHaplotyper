@@ -6,8 +6,8 @@ test_that('unqiue haplotype construction approach is working', {
   expect_that(haps, is_a('list'))
   expect_that(haps[[1]], is_a('Haplotype'))
   expect_that(length(haps), equals(length(unique(seq_aa_dat))))
-  expect_that(haps[[1]]@name, equals("evolv00001"))
-  expect_that(haps[[11]]@name, equals("evolv00011"))
+  expect_that(haps[[1]]@name, equals("evolv_01"))
+  expect_that(haps[[11]]@name, equals("evolv_11"))
 })
 
 test_that('single haplotype construction approach is working', {
@@ -16,5 +16,5 @@ test_that('single haplotype construction approach is working', {
   expect_that(haps, is_a('list'))
   expect_that(haps[[1]], is_a('Haplotype'))
   expect_that(length(haps), equals(1))
-  expect_that(haps[[1]]@name, equals("evolv00001"))
+  expect_that(haps[[1]]@name, equals("evolv_1"))
 })
