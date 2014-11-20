@@ -2,7 +2,7 @@
 #' 
 #' @export
 
-run_ViralHaplotyper_app <- function(port = 5436){
+run_ViralHaplotyper_app <- function(port = 5437){
   packageDir <- find.package('ViralHaplotyper')
   shinyAppDir <- file.path(packageDir, "www") 
   if (is.null(port)){

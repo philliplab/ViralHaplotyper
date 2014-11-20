@@ -3,7 +3,7 @@
 \alias{run_ViralHaplotyper_app}
 \title{Runs the shiny app for this package}
 \usage{
-run_ViralHaplotyper_app(port = 5436)
+run_ViralHaplotyper_app(port = 5437)
 }
 \description{
 Runs the shiny app for this package
