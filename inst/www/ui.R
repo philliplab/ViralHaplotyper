@@ -8,7 +8,10 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     sidebarPanel(
-      fileInput("seq_data", label = h3("Sequence Data"))
+      fileInput("seq_data", label = h3("Sequence Data")),
+      downloadButton("download_unique_details", "Download Details of Unique Sequences"),
+      downloadButton("download_unique_sequences", "Download Unique Sequences"),
+      downloadButton("download_sample_data", "Download Sample Data")
     ),
 
     mainPanel(

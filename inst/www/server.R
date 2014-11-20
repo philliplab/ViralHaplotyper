@@ -38,4 +38,25 @@ shinyServer(function(input, output, session) {
 
   output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
 
+  output$download_unique_details <- downloadHandler(
+    filename = function() {'unique_sequence_details.csv'},
+    content = function(file){
+      write.csv(unique_sequence_list()$details, file, row.names = FALSE)
+    }
+  )
+
+  output$download_unique_sequences <- downloadHandler(
+    filename = function() {'unique_sequences.FASTA'},
+    content = function(file){
+      writeXStringSet(unique_sequence_list()$unique_sequences, file)
+    }
+  )
+
+  output$download_sample_data <- downloadHandler(
+    filename = function() {'sample_data.FASTA'},
+    content = function(file){
+      writeXStringSet(get_test_AAStringSet(), file)
+    }
+  )
+
 })
