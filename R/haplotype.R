@@ -146,10 +146,49 @@ setGeneric("number_of_unique_sequences",
 #' @aliases number_of_unique_sequences
 setMethod("number_of_unique_sequences", 
           c('Haplotype'),
-
 function(the_haplotype){
   return(length(the_haplotype@sequences))
 }
-  
+)
+
+#' Returns detailed information about the unique sequences in a haplotype
+#'
+#' @param the_haplotype The haplotype from which the details must be
+#' extracted
+#' @rdname get_unique_sequence_details-methods
+#' @export get_unique_sequence_details
+
+setGeneric("get_unique_sequence_details",
+           function(the_haplotype){
+             standardGeneric("get_unique_sequence_details")
+           }
+)
+
+#' @rdname get_unique_sequence_details-methods
+#' @aliases get_unique_sequence_details
+setMethod("get_unique_sequence_details", 
+          c('Haplotype'),
+
+function(the_haplotype){
+  uniq_seq_details <- data.frame(seq_name = character(0),
+                                 the_sequence = character(0),
+                                 count = numeric(0),
+                                 total_sequences = numeric(0),
+                                 long_label = character(0))
+  total_sequences <- total_number_of_sequences(the_haplotype)
+  copies <- the_haplotype@copies
+  for (i in seq_along(copies)){
+    seq_name <- names(copies)[i]
+    count <- copies[[i]]$n_copies
+    usd_row <- data.frame(seq_name = seq_name,
+                          the_sequence = as.character(the_haplotype@sequences[seq_name]),
+                          count = count,
+                          total_sequences = total_sequences,
+                          long_label = paste(the_haplotype@name, i, count, total_sequences, sep = "_"))
+    uniq_seq_details <- rbind(uniq_seq_details, usd_row)
+  }
+  row.names(uniq_seq_details) <- NULL
+  return(uniq_seq_details)
+}
 )
 
