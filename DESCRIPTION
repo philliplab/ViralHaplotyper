@@ -6,11 +6,8 @@ Version: 0.1
 Author: Phillip Labuschagne <philliplab@gmail.com>
 Maintainer: Phillip Labuschagne <philliplab@gmail.com>
 Depends:
-    testthat,
-    toolmania,
     Biostrings,
-    cluster,
-    ape
+    testthat
 Imports:
     shiny
 License: GPL-3
