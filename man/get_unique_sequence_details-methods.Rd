@@ -14,6 +14,8 @@ get_unique_sequence_details(the_haplotype)
 extracted}
 }
 \description{
-Returns detailed information about the unique sequences in a haplotype
+It return a list with two elements. The first is a data.frame with all the
+stats and the second is a BStringSet with complicated labels that contain
+all the information from the first element.
 }
 

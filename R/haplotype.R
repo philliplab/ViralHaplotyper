@@ -153,6 +153,10 @@ function(the_haplotype){
 
 #' Returns detailed information about the unique sequences in a haplotype
 #'
+#' It return a list with two elements. The first is a data.frame with all the
+#' stats and the second is a BStringSet with complicated labels that contain
+#' all the information from the first element.
+#'
 #' @param the_haplotype The haplotype from which the details must be
 #' extracted
 #' @rdname get_unique_sequence_details-methods
@@ -170,8 +174,8 @@ setMethod("get_unique_sequence_details",
           c('Haplotype'),
 
 function(the_haplotype){
+  unique_sequences <- BStringSet()
   uniq_seq_details <- data.frame(seq_name = character(0),
-                                 the_sequence = character(0),
                                  count = numeric(0),
                                  total_sequences = numeric(0),
                                  long_label = character(0))
@@ -180,15 +184,19 @@ function(the_haplotype){
   for (i in seq_along(copies)){
     seq_name <- names(copies)[i]
     count <- copies[[i]]$n_copies
+    the_seq <- the_haplotype@sequences[seq_name]
+    long_label <- paste(the_haplotype@name, i, count, total_sequences, sep = "_")
+    names(the_seq) <- long_label
+    unique_sequences <- c(unique_sequences, the_seq)
     usd_row <- data.frame(seq_name = seq_name,
-                          the_sequence = as.character(the_haplotype@sequences[seq_name]),
                           count = count,
                           total_sequences = total_sequences,
-                          long_label = paste(the_haplotype@name, i, count, total_sequences, sep = "_"))
+                          long_label = long_label)
     uniq_seq_details <- rbind(uniq_seq_details, usd_row)
   }
   row.names(uniq_seq_details) <- NULL
-  return(uniq_seq_details)
+  return(list(details = uniq_seq_details,
+              unique_sequences = unique_sequences))
 }
 )
 
