@@ -2,7 +2,7 @@ library(shiny)
 
 shinyUI(fluidPage(
 
-  tags$link(rel = "stylesheet", type = "text/css", href="no_wrap_tables.css"),
+  #tags$link(rel = "stylesheet", type = "text/css", href="no_wrap_tables.css"),
 
   titlePanel("Viral Haplotyper"),
 
@@ -15,6 +15,12 @@ shinyUI(fluidPage(
       tabsetPanel(
         tabPanel("Input File",
                  verbatimTextOutput("data_set")
+                 ),
+        tabPanel("Unique Sequence Details",
+                 dataTableOutput('unique_table')
+                 ),
+        tabPanel("Unique Sequences",
+                 verbatimTextOutput("unique_sequences")
                  )
         )
     )

@@ -1,5 +1,5 @@
 library(shiny)
-library(Biostrings)
+library(ViralHaplotyper)
 options(shiny.maxRequestSize=100*1024^2)
 
 shinyServer(function(input, output, session) {
@@ -18,6 +18,22 @@ shinyServer(function(input, output, session) {
     }
 
     return(data_sets)
+  })
+
+  single_haplotypes <- reactive({
+    return(construct_haplotypes(read_data()$seq_data$data_set, 'single'))
+  })
+
+  unique_sequence_list <- reactive({
+    return(get_unique_sequence_details(single_haplotypes()[[1]]))
+  })
+
+  output$unique_table <- renderDataTable({
+    return(unique_sequence_list()$details)
+  })
+
+  output$unique_sequences <- renderPrint({
+    print(unique_sequence_list()$unique_sequences)
   })
 
   output$data_set <- renderPrint(print(read_data()$seq_data$data_set))
