@@ -185,7 +185,10 @@ function(the_haplotype){
     seq_name <- names(copies)[i]
     count <- copies[[i]]$n_copies
     the_seq <- the_haplotype@sequences[seq_name]
-    long_label <- paste(the_haplotype@name, i, count, total_sequences, sep = "_")
+    hap_freq <- str_pad(round(count/total_sequences, 3), width=5, side="right", pad="0")
+    padded_count <- str_pad(count, width=5, pad="0")
+    padded_i <- str_pad(i, width=3, pad = "0")
+    long_label <- paste(the_haplotype@name, padded_i, padded_count, hap_freq, sep = "_")
     names(the_seq) <- long_label
     unique_sequences <- c(unique_sequences, the_seq)
     usd_row <- data.frame(seq_name = seq_name,

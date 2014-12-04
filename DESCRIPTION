@@ -8,6 +8,7 @@ Maintainer: Phillip Labuschagne <philliplab@gmail.com>
 Depends:
     Biostrings,
     shiny,
+    stringr,
     testthat
 Imports:
     shiny
