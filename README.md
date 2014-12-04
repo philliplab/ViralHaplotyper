@@ -16,10 +16,15 @@ install_github('rstudio/shiny')
 install_github('philliplab/ViralHaplotyper')
 ```
 
-To run the web UI:
+To run the web UI from within an R session:
 ```r
 library(ViralHaplotyper)
 run_ViralHaplotyper_app()
+```
+
+To run the web UI from the commandline:
+```sh
+ R -e 'library(ViralHaplotyper); run_ViralHaplotyper_app()'
 ```
 
 Given a dataset, it can construct haplotypes for the dataset using these
