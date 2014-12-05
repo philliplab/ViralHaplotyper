@@ -185,7 +185,7 @@ function(the_haplotype){
     seq_name <- names(copies)[i]
     count <- copies[[i]]$n_copies
     the_seq <- the_haplotype@sequences[seq_name]
-    hap_freq <- str_pad(round(count/total_sequences, 3), width=5, side="right", pad="0")
+    hap_freq <- sprintf("%05.1f", 100*count/total_sequences)
     padded_count <- str_pad(count, width=5, pad="0")
     padded_i <- str_pad(i, width=3, pad = "0")
     long_label <- paste(the_haplotype@name, padded_i, padded_count, hap_freq, sep = "_")
