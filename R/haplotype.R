@@ -197,6 +197,7 @@ function(the_haplotype){
                           long_label = long_label)
     uniq_seq_details <- rbind(uniq_seq_details, usd_row)
   }
+  unique_sequences <- unique_sequences[order(-uniq_seq_details$count)]
   row.names(uniq_seq_details) <- NULL
   return(list(details = uniq_seq_details,
               unique_sequences = unique_sequences))
